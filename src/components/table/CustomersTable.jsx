@@ -20,7 +20,6 @@ export const CustomersTable = ({ currentScreen }) => {
   const [filter, setFilter] = useState("");
   const [columnFilter, setColumnFilter] = useState([]);
   const columns = [
-   
     {
       header: "Customer Name",
       accessorFn: (row) => `${row.first_name} ${row.last_name}`,
@@ -35,12 +34,11 @@ export const CustomersTable = ({ currentScreen }) => {
       accessorKey: "phone",
       size: 120,
     },
-   
+
     {
       header: "Email",
       accessorKey: "email",
       cell: EmailCell,
-   
     },
 
     {
@@ -63,9 +61,9 @@ export const CustomersTable = ({ currentScreen }) => {
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     defaultColumn: {
-      size: 125, 
-      minSize: 100, 
-      maxSize: 200, 
+      size: 125,
+      minSize: 100,
+      maxSize: 200,
     },
     initialState: {
       pagination: {
@@ -88,7 +86,7 @@ export const CustomersTable = ({ currentScreen }) => {
     table.setPageIndex(event.selected);
   };
   let resultAvailable = table.getFilteredRowModel().rows.length !== 0;
-  console.log("resultAvailable", resultAvailable);
+  console.log("getFilteredRowModel", table.getFilteredRowModel());
   return (
     <div className="table-wrapper">
       {" "}
@@ -135,8 +133,10 @@ export const CustomersTable = ({ currentScreen }) => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                
-                <th className={`table_header column_${header.column.id}`} key={header.id}>
+                <th
+                  className={`table_header column_${header.column.id}`}
+                  key={header.id}
+                >
                   {flexRender(
                     header.column.columnDef.header,
                     header.getContext()
@@ -175,12 +175,15 @@ export const CustomersTable = ({ currentScreen }) => {
                 1
             )}{" "}
             to{" "}
-            {Math.ceil(
-              table.getState().pagination.pageIndex *
-                table.getState().pagination.pageSize +
-                table.getState().pagination.pageSize
-            )}{" "}
-            of {table.getPrePaginationRowModel().rows.length} entries
+            {table.getFilteredRowModel().rows.length >
+            table.getState().pagination.pageSize
+              ? Math.ceil(
+                  table.getState().pagination.pageIndex *
+                    table.getState().pagination.pageSize +
+                    table.getState().pagination.pageSize
+                )
+              : table.getFilteredRowModel().rows.length}{" "}
+            of {table.getFilteredRowModel().rows.length} entries
           </p>
         )}
         {!resultAvailable && <p>No results available</p>}
