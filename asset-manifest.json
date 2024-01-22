@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/glivera/static/css/main.79148046.css",
-    "main.js": "/glivera/static/js/main.7987e835.js",
+    "main.js": "/glivera/static/js/main.ab7f4632.js",
     "static/media/logo.svg": "/glivera/static/media/logo.16efc67cdda9c1c8f945c02ce727c9af.svg",
     "static/media/close.svg": "/glivera/static/media/close.89d8a5361f5d5dd9294d7bf2d4887cd7.svg",
     "index.html": "/glivera/index.html",
@@ -9,10 +9,10 @@
     "static/media/search.svg": "/glivera/static/media/search.d555a35800fec6f7c1928aef95546ef7.svg",
     "static/media/chevron.svg": "/glivera/static/media/chevron.950bef67ef15a65ede2768b85801f4f2.svg",
     "main.79148046.css.map": "/glivera/static/css/main.79148046.css.map",
-    "main.7987e835.js.map": "/glivera/static/js/main.7987e835.js.map"
+    "main.ab7f4632.js.map": "/glivera/static/js/main.ab7f4632.js.map"
   },
   "entrypoints": [
     "static/css/main.79148046.css",
-    "static/js/main.7987e835.js"
+    "static/js/main.ab7f4632.js"
   ]
 }
