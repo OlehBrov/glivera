@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 export const EmailCell = ({ getValue, row, column, table }) => {
   const email = getValue() || {};

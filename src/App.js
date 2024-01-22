@@ -33,7 +33,6 @@ function App() {
     screenMatcher(window.screen.width);
   }, []);
 
-
   return (
     <Routes>
       <Route path="/" element={<Layout currentScreen={currentScreen} />}>
@@ -45,12 +44,6 @@ function App() {
         <Route path="income" element={<Income />} />
         <Route path="promote" element={<Promote />} />
         <Route path="help" element={<Help />} />
-
-        {/* <Route
-          path="messages"
-          element={<DashboardMessages />}
-        />
-        <Route path="tasks" element={<DashboardTasks />} /> */}
       </Route>
     </Routes>
   );

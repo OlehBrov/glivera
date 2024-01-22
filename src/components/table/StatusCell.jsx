@@ -5,8 +5,11 @@ export const StatusCell = ({ getValue, row, column, table }) => {
   return (
     <div
       className={`status_cell ${active ? `status_active` : `status_inactive`}`}
+     
     >
-      {mobileView && <p className="status_text"> {`${active ? `Active` : `Inactive`}`}</p>}
+      {mobileView && (
+        <p className="status_text"> {`${active ? `Active` : `Inactive`}`}</p>
+      )}
     </div>
   );
 };

@@ -15,7 +15,8 @@
     position: relative;
     width: auto;
     height: auto;
-    transform: none;
+    background: none;
+    transform: translateY(0);
   }
 }
 
@@ -23,29 +24,54 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 0 auto;
+  margin: 30px auto 0 auto;
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;
-
-  //   transform: translateY(50%);
+  @media screen and (min-width: $laptop) {
+    padding-left: 0;
+    padding-right: 0;
+    width: 250px;
+  }
+ 
 }
 
 .nav-link {
   padding-top: 20px;
   padding-bottom: 20px;
-  text-align: center;
+  border-radius: 8px;
+ 
   width: 100%;
-  // background-color: $red90;
-
-  // font-weight: $semi-bold;
   opacity: 1;
+  color: #9197b3;
+  padding-left: 40%;
+  padding-right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   @media screen and (min-width: $laptop) {
+    padding: 11px;
+
     opacity: 1;
+    text-align: start;
+  }
+  &:hover {
+    background-color: #5932ea;
+  
+    color: #fff;
+   
+
+    & .chevron > path {
+      stroke: #fff;
+    }
   }
   &.active {
     background-color: #5932ea;
-  }
+    color: #fff;
+    & .chevron > path {
+      stroke: #fff;
+    }
+     }
 
   &.logo-link {
     background: none;
@@ -54,6 +80,15 @@
 
 .menu-btn {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
   top: 25px;
   right: 25px;
+  border: none;
+  border-radius: 8px;
+  & > svg {
+    fill: #5932EA;
+  }
 }

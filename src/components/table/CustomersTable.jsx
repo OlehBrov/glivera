@@ -3,7 +3,6 @@ import {
   useReactTable,
   flexRender,
   getCoreRowModel,
-  //   PaginationState,
   getPaginationRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
@@ -15,54 +14,59 @@ import ReactPaginate from "react-paginate";
 
 export const CustomersTable = ({ currentScreen }) => {
   const data = useMemo(() => mData, []);
-  const [itemOffset, setItemOffset] = useState(0);
+
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [pageIndex, setPageIndex] = useState(0);
   const [filter, setFilter] = useState("");
   const [columnFilter, setColumnFilter] = useState([]);
   const columns = [
-    // {
-    //   header: "ID",
-    //   accessorKey: "id",
-    // },
+   
     {
-      header: "Name",
+      header: "Customer Name",
       accessorFn: (row) => `${row.first_name} ${row.last_name}`,
-    },
-    // {
-    //   header: "Last name",
-    //   accessorKey: "last_name",
-    // },
-    {
-      header: "E-mail",
-      accessorKey: "email",
-      cell: EmailCell,
+      size: 125,
     },
     {
       header: "Company",
       accessorKey: "company",
     },
     {
+      header: "Phone Number",
+      accessorKey: "phone",
+      size: 120,
+    },
+   
+    {
+      header: "Email",
+      accessorKey: "email",
+      cell: EmailCell,
+   
+    },
+
+    {
       header: "Country",
       accessorKey: "country",
     },
-    {
-      header: "Phone",
-      accessorKey: "phone",
-    },
+
     {
       header: "Status",
       accessorKey: "active",
-        cell: StatusCell,
-      className: 'status-td'
+      cell: StatusCell,
+      className: "status-td",
     },
   ];
   const table = useReactTable({
     data,
     columns,
+    enableColumnResizing: false,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    defaultColumn: {
+      size: 125, 
+      minSize: 100, 
+      maxSize: 200, 
+    },
     initialState: {
       pagination: {
         pageIndex: pageIndex,
@@ -75,15 +79,16 @@ export const CustomersTable = ({ currentScreen }) => {
       columnFilters: columnFilter,
     },
     onGlobalFilterChange: setFilter,
-      onColumnFiltersChange: setColumnFilter,
-      meta: {
-        currentScreen
-    }
+    onColumnFiltersChange: setColumnFilter,
+    meta: {
+      currentScreen,
+    },
   });
   const handlePageClick = (event) => {
     table.setPageIndex(event.selected);
   };
-
+  let resultAvailable = table.getFilteredRowModel().rows.length !== 0;
+  console.log("resultAvailable", resultAvailable);
   return (
     <div className="table-wrapper">
       {" "}
@@ -130,7 +135,8 @@ export const CustomersTable = ({ currentScreen }) => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th className="table_header" key={header.id}>
+                
+                <th className={`table_header column_${header.column.id}`} key={header.id}>
                   {flexRender(
                     header.column.columnDef.header,
                     header.getContext()
@@ -145,7 +151,13 @@ export const CustomersTable = ({ currentScreen }) => {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className={`${cell.column.columnDef.header.toLocaleLowerCase()}`}>
+                <td
+                  key={cell.id}
+                  className={`${cell.column.columnDef.header.toLocaleLowerCase()}`}
+                  style={{
+                    width: cell.column.getSize(),
+                  }}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -154,21 +166,24 @@ export const CustomersTable = ({ currentScreen }) => {
         </tbody>
       </table>
       <div className="table_controls">
-        <p>
-          Showing data{" "}
-          {Math.ceil(
-            table.getState().pagination.pageIndex *
-              table.getState().pagination.pageSize +
-              1
-          )}{" "}
-          to{" "}
-          {Math.ceil(
-            table.getState().pagination.pageIndex *
-              table.getState().pagination.pageSize +
-              table.getState().pagination.pageSize
-          )}{" "}
-          of {table.getPrePaginationRowModel().rows.length} entries
-        </p>
+        {resultAvailable && (
+          <p>
+            Showing data{" "}
+            {Math.ceil(
+              table.getState().pagination.pageIndex *
+                table.getState().pagination.pageSize +
+                1
+            )}{" "}
+            to{" "}
+            {Math.ceil(
+              table.getState().pagination.pageIndex *
+                table.getState().pagination.pageSize +
+                table.getState().pagination.pageSize
+            )}{" "}
+            of {table.getPrePaginationRowModel().rows.length} entries
+          </p>
+        )}
+        {!resultAvailable && <p>No results available</p>}
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}

@@ -1,5 +1,4 @@
-
-.customers_container{
+.customers_container {
   @media screen and (min-width: $laptop) {
     display: flex;
     gap: 71px;
@@ -20,7 +19,7 @@ table {
 .email-cell {
   color: #292d32;
 
-//   font-size: 10px;
+  //   font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -38,6 +37,9 @@ table {
 .table_filters-wrapper {
   display: flex;
   width: 100%;
+  @media screen and (min-width: $desktop) {
+    padding-right: 51px;
+  }
 }
 .table_filters_btns-wrapper {
   display: flex;
@@ -46,6 +48,7 @@ table {
   margin-right: auto;
 }
 .table_filter-btn {
+  cursor: pointer;
   color: #000;
   font-size: 12px;
   font-style: normal;
@@ -59,6 +62,14 @@ table {
     color: #16c098;
     font-weight: 400;
     font-size: 8px;
+  }
+  @media screen and (min-width: $laptop) {
+    font-size: 22px;
+    &.inactive {
+      color: #16c098;
+      font-weight: 400;
+      font-size: 14px;
+    }
   }
 }
 .input-wrapper {
@@ -87,12 +98,16 @@ td {
 // }
 .table_header {
   color: #b5b7c0;
-
-//   font-size: 10px;
+  text-align: start;
+  //   font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.14px;
+}
+
+.column_active {
+  text-align: center;
 }
 .email-cell {
   word-break: break-all;
@@ -105,7 +120,7 @@ td {
   border-radius: 4px;
   margin: 0 auto;
   &.status_active {
-    background-color: #008;
+    background-color: #008767;
   }
   &.status_inactive {
     background-color: #df0404;
@@ -136,10 +151,16 @@ td {
 }
 .table_controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px 0px;
+  flex-wrap: wrap;
+  gap: 10px;
   font-size: 10px;
+  @media screen and (min-width: $mobile) {
+    flex-wrap: nowrap;
+
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0px;
+  }
   @media screen and (min-width: $laptop) {
     font-size: 14px;
   }
@@ -149,9 +170,19 @@ td {
   gap: 8px;
 }
 .page-item {
+  display: inline-flex;
   border-radius: 4px;
   border: 1px solid #eee;
-
   background: #f5f5f5;
-  padding: 5px;
+
+  &.active {
+    color: #fff;
+    border: 1px solid #5932ea;
+
+    background: #5932ea;
+  }
+}
+.page-link {
+  padding: 6px 9px;
+  cursor: pointer;
 }
