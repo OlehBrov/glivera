@@ -7,7 +7,7 @@ import App from "./App";
 const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
+    <BrowserRouter basename="/glivera">
       <App />
     </BrowserRouter>
   </React.StrictMode>
