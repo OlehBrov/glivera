@@ -46,14 +46,14 @@ export const Layout = ({ currentScreen }) => {
           "-=0.5"
         );
       return () => {
-        console.log("return in gsapScreen");
+        
       };
     });
   const openMenu = () => {
-    console.log('open menu')
+
     if (Number(currentScreen) < 1024) menuTl.restart();
   };
-  const closeMenu = () => { console.log('close menu')
+  const closeMenu = () => { 
     if (Number(currentScreen) < 1024) menuTl.reverse();
   };
 

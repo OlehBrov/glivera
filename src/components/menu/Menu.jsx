@@ -13,7 +13,7 @@ import { ReactComponent as LogoIcon } from "../../images/logo.svg";
 
 
 export const Menu = (props) => {
-  console.log("Menu props", props);
+
   const showBtn = props?.screen;
   const location = useLocation();
   return (

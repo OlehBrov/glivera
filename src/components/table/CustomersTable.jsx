@@ -86,7 +86,7 @@ export const CustomersTable = ({ currentScreen }) => {
     table.setPageIndex(event.selected);
   };
   let resultAvailable = table.getFilteredRowModel().rows.length !== 0;
-  console.log("getFilteredRowModel", table.getFilteredRowModel());
+
   return (
     <div className="table-wrapper">
       {" "}
