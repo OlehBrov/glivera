@@ -62,7 +62,7 @@ export const CustomersTable = ({ currentScreen }) => {
     getFilteredRowModel: getFilteredRowModel(),
     defaultColumn: {
       size: 125,
-      minSize: 100,
+      minSize: 50,
       maxSize: 200,
     },
     initialState: {

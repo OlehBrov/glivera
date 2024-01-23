@@ -2,6 +2,6 @@ import React from 'react'
 
 export const Income = () => {
   return (
-    <div>Income</div>
+    <div>Income Page Content</div>
   )
 }

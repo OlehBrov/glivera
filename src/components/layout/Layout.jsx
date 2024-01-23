@@ -50,6 +50,7 @@ export const Layout = ({ currentScreen }) => {
       };
     });
   const openMenu = () => {
+    console.log('open menu')
     if (Number(currentScreen) < 1024) menuTl.restart();
   };
   const closeMenu = () => { console.log('close menu')
